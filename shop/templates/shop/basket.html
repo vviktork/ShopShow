@@ -1,0 +1,48 @@
+{% extends "basis/base.html" %}
+{% load static %}
+{% block title %}Корзина{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static '/shop/css/basket.css' %}">
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'shop/js/basket.js'%}"></script>
+{% endblock %}
+
+{% block content %}
+<div id="container">
+    <div id="banner">
+        <h3 class="text-center py-3 mb-0">Корзина</h3>
+    </div>
+    <div class="card px-2">
+        <table class="table mb-0">
+            <thead>
+                <tr class="font-italic">
+                    <th scope="col">Код</th>
+                    <th scope="col">Наименование</th>
+                    <th scope="col">Цена (руб.)</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for value in basket %}
+                <tr>
+                    <td class="align-middle">{{ value.0 }}</td>
+                    <td class="align-middle">{{ value.1 }}</td>
+                    <td class="align-middle">{{ value.2 }}</td>
+                </tr>
+            {% endfor %}
+                <tr>
+                    <td class="align-middle"></td>
+                    <td class="align-middle text-right">Всего:</td>
+                    <td class="align-middle font-weight-bolder">{{ sum }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="modal-footer">
+            <button type="button" class="btn-sm btn-secondary mx-4" id="cancel">Отменить заказ</button>
+            <button type="button" class="btn-sm btn-success" id="confirm">Подтвердить заказ</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

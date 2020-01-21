@@ -1,0 +1,61 @@
+{% extends "basis/base.html" %}
+{% load static %}
+{% block title %}Анкета{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static '/profile/css/profile.css' %}">
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'profile/js/profile.js'%}"></script>
+{% endblock %}
+
+{% block content %}
+<div id="container">
+    <div id="banner">
+        <h3 class="text-center py-3 mb-0">Анкета пользователя</h3>
+    </div>
+    <div class="card px-2">
+        {% if clean == 0%}
+            <form method="post" enctype="multipart/form-data" action="/">{% csrf_token %}
+                <table class="table mb-0">
+                    <tbody>
+                    {% for value in form %}
+                        <tr>
+                            {% if value.label == workLabel %}
+                                <td class="h5 font-italic align-middle">{{ value.label }}</td>
+                                <td class="align-middle">
+                                    <select class="form-control" value="{{ value }}">
+                                    {% for job in work %}
+                                        <option>{{ job }}</option>
+                                    {% endfor %}
+                                    </select>
+                                </td>
+                            {% else %}
+                                <td class="h5 font-italic align-middle">{{ value.label }}</td>
+                                <td class="align-middle">{{ value }}</td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <dev class="modal-footer">
+                    <button type="button" class="btn btn-secondary mx-4" id="exit1">Выход</button>
+                    <button type="submit" class="btn btn-success">Сохранить</button>
+                </dev>
+            </form>
+        {% elif clean == 1 %}
+                <h5 class="font-italic align-middle text-center my-1">{{ text }}</h5>
+            <dev class="text-right">
+                <button type="button" class="btn btn-primary my-2" id="ok">OK</button>
+            </dev>
+        {% elif clean == 2 %}
+                <h5 class=" font-italic align-middle text-center my-3">{{ text }}</h5>
+            <dev class="text-right">
+                <button type="button" class="btn-md btn-secondary mx-4" id="exit2">Выход</button>
+                <button type="button" class="btn-md btn-success my-2" id="back">Вернуться к анкете</button>
+            </dev>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

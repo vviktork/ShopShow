@@ -1,0 +1,14 @@
+#container {
+    background: #E8EDF3;
+    border: 3px solid #417690;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 28em;
+    min-width: 400px;
+    margin: 50px auto;
+}
+
+#banner {
+    background: #417690;
+    color: #ffc;
+}

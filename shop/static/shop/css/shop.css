@@ -1,0 +1,13 @@
+nav {
+    background: #417690;
+    color: #ffc;
+}
+
+.card {
+    max-width: 18rem;
+}
+
+.form-check-input {
+    width: 18px;
+    height: 18px;
+}
